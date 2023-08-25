@@ -17,16 +17,16 @@ module.exports = Ferdium => {
       const query = store.getAll();
       query.onsuccess = event => {
         for (const chat of event.target.result) {
-          if (chat.unreadCount == -1) {
+          if (chat.unreadCount > 0) {
             if (chat.muteExpiration > 0 || chat.isAutoMuted) {
-              unreadMutedCount = 0;
+              unreadMutedCount == 0;
             } else {
               unreadCount += chat.unreadCount;
             }
           }
         }
 
-        Ferdium.setBadge(unreadCount, unreadMutedCount);
+        Ferdium.setBadge(unreadCount, 0);
       };
 
       query.addEventListener('error', event => {
