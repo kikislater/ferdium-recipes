@@ -18,15 +18,15 @@ module.exports = Ferdium => {
       query.onsuccess = event => {
         for (const chat of event.target.result) {
           if (chat.unreadCount > 0) {
-            if (chat.muteExpiration > 0 || chat.isAutoMuted) {
-              unreadMutedCount == 0;
+            if (chat.muteExpiration === 0 || chat.isAutoMuted) {
+              unreadMutedCount === 0;
             } else {
               unreadCount += chat.unreadCount;
             }
           }
         }
 
-        Ferdium.setBadge(unreadCount, 0);
+        Ferdium.setBadge(unreadCount, unreadMutedCount);
       };
 
       query.addEventListener('error', event => {
